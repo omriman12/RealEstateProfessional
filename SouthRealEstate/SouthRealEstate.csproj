@@ -1,0 +1,128 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\animate.css" />
+    <Content Remove="wwwroot\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\css\classy-nav.min.css" />
+    <Content Remove="wwwroot\css\font-awesome.min.css" />
+    <Content Remove="wwwroot\css\jquery-ui.min.css" />
+    <Content Remove="wwwroot\css\magnific-popup.css" />
+    <Content Remove="wwwroot\css\nice-select.css" />
+    <Content Remove="wwwroot\css\owl.carousel.css" />
+    <Content Remove="wwwroot\css\themify-icons.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\animate.css" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\classy-nav.min.css" />
+    <None Include="wwwroot\css\font-awesome.min.css" />
+    <None Include="wwwroot\css\jquery-ui.min.css" />
+    <None Include="wwwroot\css\magnific-popup.css" />
+    <None Include="wwwroot\css\nice-select.css" />
+    <None Include="wwwroot\css\owl.carousel.css" />
+    <None Include="wwwroot\css\themify-icons.css" />
+    <None Include="wwwroot\fonts\classy.eot" />
+    <None Include="wwwroot\fonts\classy.svg" />
+    <None Include="wwwroot\fonts\classy.ttf" />
+    <None Include="wwwroot\fonts\classy.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\FontAwesome.otf" />
+    <None Include="wwwroot\fonts\themify.eot" />
+    <None Include="wwwroot\fonts\themify.svg" />
+    <None Include="wwwroot\fonts\themify.ttf" />
+    <None Include="wwwroot\fonts\themify.woff" />
+    <None Include="wwwroot\img\bg-img\about.jpg" />
+    <None Include="wwwroot\img\bg-img\cta.jpg" />
+    <None Include="wwwroot\img\bg-img\editor.jpg" />
+    <None Include="wwwroot\img\bg-img\fea-product.jpg" />
+    <None Include="wwwroot\img\bg-img\feature1.jpg" />
+    <None Include="wwwroot\img\bg-img\feature2.jpg" />
+    <None Include="wwwroot\img\bg-img\feature3.jpg" />
+    <None Include="wwwroot\img\bg-img\feature4.jpg" />
+    <None Include="wwwroot\img\bg-img\feature5.jpg" />
+    <None Include="wwwroot\img\bg-img\feature6.jpg" />
+    <None Include="wwwroot\img\bg-img\feature7.jpg" />
+    <None Include="wwwroot\img\bg-img\feature8.jpg" />
+    <None Include="wwwroot\img\bg-img\feature9.jpg" />
+    <None Include="wwwroot\img\bg-img\footer.jpg" />
+    <None Include="wwwroot\img\bg-img\hero1.jpg" />
+    <None Include="wwwroot\img\bg-img\hero2.jpg" />
+    <None Include="wwwroot\img\bg-img\hero3.jpg" />
+    <None Include="wwwroot\img\bg-img\hero4.jpg" />
+    <None Include="wwwroot\img\bg-img\hero5.jpg" />
+    <None Include="wwwroot\img\bg-img\listing.jpg" />
+    <None Include="wwwroot\img\bg-img\team1.jpg" />
+    <None Include="wwwroot\img\bg-img\team2.jpg" />
+    <None Include="wwwroot\img\bg-img\team3.jpg" />
+    <None Include="wwwroot\img\blog-img\blog1.jpg" />
+    <None Include="wwwroot\img\blog-img\blog2.jpg" />
+    <None Include="wwwroot\img\blog-img\blog3.jpg" />
+    <None Include="wwwroot\img\blog-img\c-1.jpg" />
+    <None Include="wwwroot\img\blog-img\c-2.jpg" />
+    <None Include="wwwroot\img\blog-img\c-3.jpg" />
+    <None Include="wwwroot\img\core-img\favicon.ico" />
+    <None Include="wwwroot\img\core-img\logo.png" />
+    <None Include="wwwroot\img\core-img\signature.png" />
+    <None Include="wwwroot\img\icons\bathtub.png" />
+    <None Include="wwwroot\img\icons\envelope.png" />
+    <None Include="wwwroot\img\icons\flat.png" />
+    <None Include="wwwroot\img\icons\garage.png" />
+    <None Include="wwwroot\img\icons\home3.png" />
+    <None Include="wwwroot\img\icons\house1.png" />
+    <None Include="wwwroot\img\icons\house2.png" />
+    <None Include="wwwroot\img\icons\location.png" />
+    <None Include="wwwroot\img\icons\new.png" />
+    <None Include="wwwroot\img\icons\new2.png" />
+    <None Include="wwwroot\img\icons\phone-call.png" />
+    <None Include="wwwroot\img\icons\prize.png" />
+    <None Include="wwwroot\img\icons\prize2.png" />
+    <None Include="wwwroot\img\icons\rent.png" />
+    <None Include="wwwroot\img\icons\signature.png" />
+    <None Include="wwwroot\img\icons\space.png" />
+    <None Include="wwwroot\js\active.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\classy-nav.min.js" />
+    <None Include="wwwroot\js\jquery-ui.min.js" />
+    <None Include="wwwroot\js\jquery\jquery-2.2.4.min.js" />
+    <None Include="wwwroot\js\map-active.js" />
+    <None Include="wwwroot\js\plugins.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\_mixin.scss" />
+    <None Include="wwwroot\scss\_responsive.scss" />
+    <None Include="wwwroot\scss\_theme_color.scss" />
+    <None Include="wwwroot\scss\_variables.scss" />
+    <None Include="wwwroot\style.css" />
+    <None Include="wwwroot\style.css.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Properties\SingleProperty.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Properties\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\About.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Contact.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>
