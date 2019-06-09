@@ -12,3 +12,13 @@
 /SouthRealEstateEnglishFresh/.sass-cache/c271f55aaaf7c7f11c38a51797984cacc713c712
 /SouthRealEstateEnglishFresh/obj
 /SouthRealEstateEnglishFresh/SouthRealEstate.csproj.user
+/.vs/RealEstateProfessional/DesignTimeBuild
+/SouthRealEstate.Console/obj
+/SouthRealEstate.Console/bin/Debug/netcoreapp2.1
+/SouthRealEstate.DAL/bin/Debug/netstandard2.0
+/SouthRealEstate.DAL/obj
+/SouthRealEstate.DAL/SouthRealEstate.DAL.csproj.user
+/SouthRealEstate.DAL.Console/obj
+/SouthRealEstate.DAL.Console/bin/Debug/netcoreapp2.1
+/SouthRealEstate.Helpers/obj
+/SouthRealEstate.Helpers/bin/Debug/netstandard2.0

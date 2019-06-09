@@ -106,11 +106,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SouthRealEstate.DAL\SouthRealEstate.DAL.csproj" />
+    <ProjectReference Include="..\SouthRealEstate.Helpers\SouthRealEstate.Helpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Views\Properties\SingleProperty.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
