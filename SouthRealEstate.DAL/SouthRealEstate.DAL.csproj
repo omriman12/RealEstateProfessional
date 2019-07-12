@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Contexts2\" />
     <Folder Include="Entities2\" />
   </ItemGroup>
 

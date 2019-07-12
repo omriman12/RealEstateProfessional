@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
+    ViewBag.Title = "Administrator";
+}
+
+<div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Administration</span>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#tab-panel1" class="mdl-tabs__tab is-active">Properties</a>
+                </div>
+
+                <div class="mdl-tabs__panel is-active" id="tab-panel1">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col">
+                            <div class="mdl-card mdl-shadow--2dp" style="width: 90%">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Properties</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <table id="tbl__residental_properties" class="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Address</th>
+                                                <th>Size Meters</th>
+                                                <th>Bad Rooms Count</th>
+                                                <th>Bath Rooms Count</th>
+                                                <th>Price</th>
+                                                <th>Is Featured?</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Add Property</h2>
+                                </div>
+
+                                <div class="mdl-card__supporting-text">
+                                    <form action="#">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="property_title">
+                                            <label class="mdl-textfield__label">Title</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="property_desc">
+                                            <label class="mdl-textfield__label">Description</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="property_add">
+                                            <label class="mdl-textfield__label">Address</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="property_size">
+                                            <label class="mdl-textfield__label">Size(m)</label>
+                                            <span class="mdl-textfield__error">Must be a number!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="property_badrooms">
+                                            <label class="mdl-textfield__label">Number of Bad Rooms</label>
+                                            <span class="mdl-textfield__error">Must be a number!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="property_bathrooms">
+                                            <label class="mdl-textfield__label">Number of Bath Rooms</label>
+                                            <span class="mdl-textfield__error">Must be a number!</span>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="property_price">
+                                            <label class="mdl-textfield__label">Price</label>
+                                            <span class="mdl-textfield__error">Must be a number!</span>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <button id="btn__add_property" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/js/pages/administrator.js")"></script>
+}

@@ -29,7 +29,11 @@ namespace ClientDataSyncAPI.WebAPI.Logic.DI
             aesEncryptionService.Decrypt(encryptedConnStr, out decodedConStr);
 
             services.AddTransient<IRealEstateDbServices>(s => new RealEstateDbServices(decodedConStr));
+            services.AddTransient<IUserManagementDbServices>(s => new UserManagementDbServices(decodedConStr));
+
             services.AddTransient<IPropertiesLogic, PropertiesLogic>();
+            services.AddTransient<IUserManagementLogic, UserManagementLogic>();
+            
         }
     }
 }

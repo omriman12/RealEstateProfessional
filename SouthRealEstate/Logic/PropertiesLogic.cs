@@ -34,6 +34,21 @@ namespace SouthRealEstate.Logic
         }
 
 
+        public async Task<IEnumerable<PropertiesResidental>> GetAllFeautredResidentalPropertiesAsync()
+        {
+
+            try
+            {
+                var properties =  await m_RealEstateDbServices.GetAllResidentalPropertiesAsync();
+                return properties.Where(x => x.IsFeatured == 1);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync()
         {
 
@@ -48,5 +63,49 @@ namespace SouthRealEstate.Logic
             }
         }
 
+
+        public async Task<PropertiesResidental> AddResidentalPropertyAsync(PropertiesResidental propertiesResidental)
+        {
+            PropertiesResidental retVal;
+
+            try
+            {
+                retVal = await m_RealEstateDbServices.AddUpdateResidentalPropertyAsync(propertiesResidental);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retVal;
+        }
+
+        public async Task<PropertiesResidental> UpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental)
+        {
+            PropertiesResidental retVal;
+
+            try
+            {
+                retVal = await m_RealEstateDbServices.AddUpdateResidentalPropertyAsync(propertiesResidental);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return retVal;
+        }
+
+        public async Task DeleteResidentalPropertyAsync(int propertiesResidentalId)
+        {
+            try
+            {
+                await m_RealEstateDbServices.DeleteResidentalPropertyAsync(propertiesResidentalId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

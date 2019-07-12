@@ -10,5 +10,7 @@ namespace SouthRealEstate.DAL.Interfaces
     {
         Task<IEnumerable<Cities>> GetAllCitiesAsync();
         Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync();
+        Task<PropertiesResidental> AddUpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental);
+        Task DeleteResidentalPropertyAsync(int propertiesResidentalId);
     }
 }

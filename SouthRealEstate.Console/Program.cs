@@ -8,7 +8,7 @@ namespace SouthRealEstate.Console
         private const string ENCRYPTION_TOKEN = "cy" + "1n" + "33" + "e7t";
         static void Main(string[] args)
         {
-            string conStr = "server=127.0.0.1;port=3306;user id=user1; password=1qaz2wsx; database=realestate; pooling=true; CharSet=utf8; Allow User Variables=True; Convert Zero Datetime=True; default command timeout=720";
+            string conStr = "xyxyzyzy";
             IEncryptionService aesEncryptionService = new AesEncryptionService(ENCRYPTION_TOKEN);
 
             string decodedConStr;

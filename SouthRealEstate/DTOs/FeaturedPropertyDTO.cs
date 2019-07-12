@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SouthRealEstate.DAL.Entities
+namespace SouthRealEstate.DTOs
 {
-    public partial class PropertiesResidental
+    public class FeaturedPropertyDTO
     {
-        public PropertiesResidental()
-        {
-            PropertiesResidentialImages = new HashSet<PropertiesResidentialImages>();
-        }
-
         public long Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -19,10 +16,9 @@ namespace SouthRealEstate.DAL.Entities
         public int BadRoomsCount { get; set; }
         public int BathRoomsCount { get; set; }
         public int Price { get; set; }
-        public byte IsNew { get; set; }
-        public byte IsFeatured { get; set; }
+        public bool IsNew { get; set; }
+        public bool IsFeatured { get; set; }
+        public string PropertyImage { get; set; }
 
-        public Cities City { get; set; }
-        public ICollection<PropertiesResidentialImages> PropertiesResidentialImages { get; set; }
     }
 }

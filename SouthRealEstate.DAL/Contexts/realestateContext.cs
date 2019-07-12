@@ -4,20 +4,21 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SouthRealEstate.DAL.Entities
 {
-    public partial class realestateContext : DbContext
+    public partial class RealestateContext : DbContext
     {
-        public realestateContext()
+        public RealestateContext()
         {
         }
 
-        public realestateContext(DbContextOptions<realestateContext> options)
+        public RealestateContext(DbContextOptions<RealestateContext> options)
             : base(options)
         {
         }
 
+        public virtual DbSet<UmUsers> UmUsers { get; set; }
         public virtual DbSet<Cities> Cities { get; set; }
         public virtual DbSet<PropertiesResidental> PropertiesResidental { get; set; }
-        public virtual DbSet<PropertyImages> PropertyImages { get; set; }
+        public virtual DbSet<PropertiesResidentialImages> PropertiesResidentialImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -80,9 +81,14 @@ namespace SouthRealEstate.DAL.Entities
                     .HasMaxLength(1000)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsFeatured)
+                    .HasColumnName("is_featured")
+                    .HasColumnType("tinyint(1)")
+                    .HasDefaultValueSql("0");
+
                 entity.Property(e => e.IsNew)
                     .HasColumnName("is_new")
-                    .HasColumnType("tinyint(4)")
+                    .HasColumnType("tinyint(1)")
                     .HasDefaultValueSql("0");
 
                 entity.Property(e => e.Price)
@@ -106,16 +112,19 @@ namespace SouthRealEstate.DAL.Entities
                     .HasConstraintName("city_FK");
             });
 
-            modelBuilder.Entity<PropertyImages>(entity =>
+            modelBuilder.Entity<PropertiesResidentialImages>(entity =>
             {
-                entity.ToTable("property_images", "realestate");
+                entity.ToTable("properties_residential_images", "realestate");
+
+                entity.HasIndex(e => e.PropertyId)
+                    .HasName("property_id_FK_idx");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasColumnType("int(11)")
-                    .ValueGeneratedNever();
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.ImageName)
+                    .IsRequired()
                     .HasColumnName("image_name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -123,6 +132,42 @@ namespace SouthRealEstate.DAL.Entities
                 entity.Property(e => e.PropertyId)
                     .HasColumnName("property_id")
                     .HasColumnType("bigint(20)");
+
+                entity.HasOne(d => d.Property)
+                    .WithMany(p => p.PropertiesResidentialImages)
+                    .HasForeignKey(d => d.PropertyId)
+                    .HasConstraintName("property_id_FK");
+            });
+
+            modelBuilder.Entity<UmUsers>(entity =>
+            {
+                entity.ToTable("um_users", "realestate");
+
+                entity.HasIndex(e => e.Name)
+                    .HasName("name_UNIQUE")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasColumnName("password")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Role)
+                    .HasColumnName("role")
+                    .HasColumnType("tinyint(4)")
+                    .HasDefaultValueSql("0");
             });
         }
     }

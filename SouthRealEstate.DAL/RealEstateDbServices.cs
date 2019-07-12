@@ -26,10 +26,10 @@ namespace SouthRealEstate.DAL
 
             try
             {
-                var optionsBuilder = new DbContextOptionsBuilder<realestateContext>();
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
                 optionsBuilder.UseMySQL(m_ConString);
 
-                using (var context = new realestateContext(optionsBuilder.Options))
+                using (var context = new RealestateContext(optionsBuilder.Options))
                 {
                     retVal = await context.Cities.ToListAsync();
                 }
@@ -48,12 +48,14 @@ namespace SouthRealEstate.DAL
 
             try
             {
-                var optionsBuilder = new DbContextOptionsBuilder<realestateContext>();
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
                 optionsBuilder.UseMySQL(m_ConString);
 
-                using (var context = new realestateContext(optionsBuilder.Options))
+                using (var context = new RealestateContext(optionsBuilder.Options))
                 {
-                    retVal = await context.PropertiesResidental.ToListAsync();
+                    retVal = await context.PropertiesResidental
+                        .Include(x=> x.PropertiesResidentialImages)
+                        .ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -63,6 +65,65 @@ namespace SouthRealEstate.DAL
             }
 
             return retVal;
+        }
+
+        public async Task<PropertiesResidental> AddUpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental)
+        {
+            PropertiesResidental retVal = null;
+
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySQL(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    var propertyDB = await context.PropertiesResidental.Where(x => x.Id == propertiesResidental.Id).FirstOrDefaultAsync();
+                    if (propertyDB == null)
+                    {
+                        context.PropertiesResidental.Add(propertiesResidental);
+                        retVal = propertiesResidental;
+                    }
+                    else
+                    {
+                        propertyDB.Title = propertiesResidental.Title;
+                        propertyDB.Description = propertiesResidental.Description;
+                        propertyDB.Address = propertiesResidental.Address;
+                        propertyDB.CityId = propertiesResidental.CityId;
+                        propertyDB.SizeMeters = propertiesResidental.SizeMeters;
+                        propertyDB.BadRoomsCount = propertiesResidental.BadRoomsCount;
+                        propertyDB.BathRoomsCount = propertiesResidental.BathRoomsCount;
+                        propertyDB.Price = propertiesResidental.Price;
+                    }
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during add residental property", ex);
+                throw;
+            }
+
+            return retVal;
+        }
+        public async Task DeleteResidentalPropertyAsync(int propertiesResidentalId)
+        {
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySQL(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    context.RemoveRange(context.PropertiesResidental.Where(x=>x.Id == propertiesResidentalId));
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during delete residental property", ex);
+                throw;
+            }
         }
     }
 }
