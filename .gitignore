@@ -22,3 +22,7 @@
 /SouthRealEstate.DAL.Console/bin/Debug/netcoreapp2.1
 /SouthRealEstate.Helpers/obj
 /SouthRealEstate.Helpers/bin/Debug/netstandard2.0
+/SouthRealEstate/Logs/log_20190718_07T35T37.log
+/SouthRealEstate/Properties/PublishProfiles
+/SouthRealEstate.DAL/bin/Release/netstandard2.0
+/SouthRealEstate.Helpers/bin/Release/netstandard2.0

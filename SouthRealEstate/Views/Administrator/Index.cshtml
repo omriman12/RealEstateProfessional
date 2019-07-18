@@ -3,6 +3,8 @@
     ViewBag.Title = "Administrator";
 }
 
+<link rel="stylesheet" href="~/css/pages/administrator.css">
+
 <div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
@@ -20,7 +22,7 @@
                 <div class="mdl-tabs__panel is-active" id="tab-panel1">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--8-col">
-                            <div class="mdl-card mdl-shadow--2dp" style="width: 90%">
+                            <div class="mdl-card mdl-shadow--2dp properties-tbl-wrapper">
                                 <div class="mdl-card__title">
                                     <h2 class="mdl-card__title-text">Properties</h2>
                                 </div>
@@ -60,6 +62,12 @@
                                             <label class="mdl-textfield__label">Description</label>
                                         </div>
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <select class="mdl-textfield__input" id="property_city_sb" name="City">
+                                                <option></option>
+                                            </select>
+                                            <label class="mdl-textfield__label" for="City">City</label>
+                                        </div>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                             <input class="mdl-textfield__input" type="text" id="property_add">
                                             <label class="mdl-textfield__label">Address</label>
                                         </div>
@@ -83,6 +91,10 @@
                                             <label class="mdl-textfield__label">Price</label>
                                             <span class="mdl-textfield__error">Must be a number!</span>
                                         </div>
+                                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="property_is_featured">
+                                            <input type="checkbox" class="mdl-checkbox__input" id="property_is_featured">
+                                            <span class="mdl-checkbox__label">Is Featured?</span>
+                                        </label>
                                     </form>
                                 </div>
 

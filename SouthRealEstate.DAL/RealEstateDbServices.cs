@@ -55,6 +55,7 @@ namespace SouthRealEstate.DAL
                 {
                     retVal = await context.PropertiesResidental
                         .Include(x=> x.PropertiesResidentialImages)
+                        .Include(x=> x.City)
                         .ToListAsync();
                 }
             }

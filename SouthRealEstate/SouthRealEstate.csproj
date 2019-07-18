@@ -17,15 +17,33 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\animate.css" />
-    <None Include="wwwroot\css\bootstrap.min.css" />
-    <None Include="wwwroot\css\classy-nav.min.css" />
-    <None Include="wwwroot\css\font-awesome.min.css" />
-    <None Include="wwwroot\css\jquery-ui.min.css" />
-    <None Include="wwwroot\css\magnific-popup.css" />
-    <None Include="wwwroot\css\nice-select.css" />
-    <None Include="wwwroot\css\owl.carousel.css" />
-    <None Include="wwwroot\css\themify-icons.css" />
+    <None Include="wwwroot\css\animate.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\classy-nav.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\font-awesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\jquery-ui.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\magnific-popup.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\nice-select.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\owl.carousel.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\themify-icons.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\fonts\classy.eot" />
     <None Include="wwwroot\fonts\classy.svg" />
     <None Include="wwwroot\fonts\classy.ttf" />
@@ -109,6 +127,7 @@
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -117,6 +136,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.prod.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -146,6 +168,18 @@
     </Content>
     <Content Update="Views\Shared\_LayoutAdministrator.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\css\material.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\pages\administrator.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\pages\login.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\toastr.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

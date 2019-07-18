@@ -77,7 +77,7 @@ namespace SouthRealEstate.Controllers
                     BathRoomsCount = x.BathRoomsCount,
                     Price = x.Price,
                     IsNew = x.IsNew == 1,
-                    PropertyImage = x.PropertiesResidentialImages.First().ImageName
+                    PropertyImage = x.PropertiesResidentialImages.Any() ? x.PropertiesResidentialImages.First().ImageName : "feature1"
                 }).ToList();
                 retVal = Ok(featuredProperties);
             }
