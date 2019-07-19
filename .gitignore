@@ -28,3 +28,5 @@
 /SouthRealEstate.Helpers/bin/Release/netstandard2.0
 /SouthRealEstate/bin/Release/netcoreapp2.1
 /SouthRealEstate/Logs/log_20190718_08T13T10.log
+/SouthRealEstate/bin/Debug/netcoreapp2.2
+/SouthRealEstate.Console/bin/Debug/netcoreapp2.2
