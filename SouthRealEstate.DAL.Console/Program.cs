@@ -19,7 +19,6 @@ namespace SouthRealEstate.DAL.Console
                 Description = "great app desc",
                 BadRoomsCount = 4,
                 BathRoomsCount = 1,
-                IsNew = 1,
                 Price = 1450000,
                 SizeMeters = 150,
                 PropertiesResidentialImages = new List<PropertiesResidentialImages>()

@@ -35,7 +35,7 @@ namespace SouthRealEstate.DAL
                     }
 
                     //returns the connection to pool
-                    await connection.CloseAsync();
+                    connection.Close();
                 }
             }
 
@@ -64,8 +64,7 @@ namespace SouthRealEstate.DAL
 
                     await conn.OpenAsync();
                     retVal = await cmd.ExecuteNonQueryAsync();
-                    await conn.CloseAsync();
-
+                    conn.Close();
                 }
             }
 
@@ -77,7 +76,7 @@ namespace SouthRealEstate.DAL
         /// </summary> 
         public async Task<Object> ExecuteScalarAsync(String commandText, MySqlParameter[] parameters, int timeout = MAX_XOMMAND_EXECUTION_TIMEOUT_SEC)
         {
-            Object retVal = null; 
+            Object retVal = null;
             using (MySqlConnection conn = new MySqlConnection(m_ConnectionString))
             {
                 using (MySqlCommand cmd = new MySqlCommand(commandText, conn))
@@ -91,7 +90,7 @@ namespace SouthRealEstate.DAL
 
                     await conn.OpenAsync();
                     retVal = await cmd.ExecuteScalarAsync();
-                    await conn.CloseAsync();
+                    conn.Close();
                 }
             }
 

@@ -19,10 +19,9 @@ namespace SouthRealEstate.DAL.Entities
         public int BadRoomsCount { get; set; }
         public int BathRoomsCount { get; set; }
         public int Price { get; set; }
-        public byte IsNew { get; set; }
-        public byte IsFeatured { get; set; }
+        public bool IsFeatured { get; set; }
 
-        public Cities City { get; set; }
-        public ICollection<PropertiesResidentialImages> PropertiesResidentialImages { get; set; }
+        public virtual Cities City { get; set; }
+        public virtual ICollection<PropertiesResidentialImages> PropertiesResidentialImages { get; set; }
     }
 }

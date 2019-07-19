@@ -10,8 +10,10 @@ namespace SouthRealEstate.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly log4net.ILog s_Logger = log4net.LogManager.GetLogger(typeof(HomeController));
         public IActionResult Index()
         {
+            s_Logger.Info("starting home page");
             return View();
         }
         

@@ -9,6 +9,6 @@ namespace SouthRealEstate.DAL.Entities
         public long PropertyId { get; set; }
         public string ImageName { get; set; }
 
-        public PropertiesResidental Property { get; set; }
+        public virtual PropertiesResidental Property { get; set; }
     }
 }

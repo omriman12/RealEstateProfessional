@@ -40,7 +40,7 @@ namespace SouthRealEstate.Logic
             try
             {
                 var properties =  await m_RealEstateDbServices.GetAllResidentalPropertiesAsync();
-                return properties.Where(x => x.IsFeatured == 1);
+                return properties.Where(x => x.IsFeatured);
             }
             catch (Exception)
             {

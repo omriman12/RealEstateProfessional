@@ -26,6 +26,7 @@ namespace SouthRealEstate
 {
     public class Startup
     {
+        private static readonly log4net.ILog s_Logger = log4net.LogManager.GetLogger(typeof(Startup));
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -112,6 +113,7 @@ namespace SouthRealEstate
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            s_Logger.Info("application is up");
         }
 
 

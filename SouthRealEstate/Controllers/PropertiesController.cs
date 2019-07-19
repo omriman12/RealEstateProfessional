@@ -76,7 +76,6 @@ namespace SouthRealEstate.Controllers
                     BadRoomsCount = x.BadRoomsCount,
                     BathRoomsCount = x.BathRoomsCount,
                     Price = x.Price,
-                    IsNew = x.IsNew == 1,
                     PropertyImage = x.PropertiesResidentialImages.Any() ? x.PropertiesResidentialImages.First().ImageName : "feature1"
                 }).ToList();
                 retVal = Ok(featuredProperties);
@@ -115,7 +114,7 @@ namespace SouthRealEstate.Controllers
                     data.Add("BadRoomsCount", property.BadRoomsCount);
                     data.Add("BathRoomsCount", property.BathRoomsCount);
                     data.Add("Price", property.Price);
-                    data.Add("IsFeatured", property.IsFeatured == 1);
+                    data.Add("IsFeatured", property.IsFeatured);
                     data.Add("actions", "");
                     dataArray.Add(data);
                     i++;
@@ -151,7 +150,7 @@ namespace SouthRealEstate.Controllers
                     BadRoomsCount = residentalPropertyDTO.BadRoomsCount,
                     BathRoomsCount = residentalPropertyDTO.BathRoomsCount,
                     Price = residentalPropertyDTO.Price,
-                    IsFeatured = residentalPropertyDTO.IsFeatured ? (byte)1 : (byte)0,
+                    IsFeatured = residentalPropertyDTO.IsFeatured,
                 };
 
                 if (residentalPropertyDTO.PropertyImages != null)
@@ -194,7 +193,7 @@ namespace SouthRealEstate.Controllers
                     BadRoomsCount = residentalPropertyDTO.BadRoomsCount,
                     BathRoomsCount = residentalPropertyDTO.BathRoomsCount,
                     Price = residentalPropertyDTO.Price,
-                    IsFeatured = residentalPropertyDTO.IsFeatured ? (byte)1 : (byte)0,
+                    IsFeatured = residentalPropertyDTO.IsFeatured,
                 };
 
                 if (residentalPropertyDTO.PropertyImages != null)

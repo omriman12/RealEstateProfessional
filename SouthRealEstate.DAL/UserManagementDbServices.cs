@@ -27,7 +27,7 @@ namespace SouthRealEstate.DAL
             try
             {
                 var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
-                optionsBuilder.UseMySQL(m_ConString);
+                optionsBuilder.UseMySql(m_ConString);
 
                 using (var context = new RealestateContext(optionsBuilder.Options))
                 {
