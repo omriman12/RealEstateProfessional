@@ -26,3 +26,5 @@
 /SouthRealEstate/Properties/PublishProfiles
 /SouthRealEstate.DAL/bin/Release/netstandard2.0
 /SouthRealEstate.Helpers/bin/Release/netstandard2.0
+/SouthRealEstate/bin/Release/netcoreapp2.1
+/SouthRealEstate/Logs/log_20190718_08T13T10.log
