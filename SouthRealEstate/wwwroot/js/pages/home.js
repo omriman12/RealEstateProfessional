@@ -50,7 +50,7 @@ $(document).ready(function () {
             $('#featured-properties-content').html(data.map(featuredPropertyTemplate).join(''));
         },
         error: function (request, errorType, errorMessage) {
-            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+            console.log(request.responseText);
         },
         beforeSend: function () {
             //$.blockUI({ message: 'Please Wait...', overlayCSS: { backgroundColor: '#fff' } });
