@@ -3,7 +3,7 @@
         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
             <!-- Property Thumbnail -->
             <div class="property-thumb">
-                <img src="/img/bg-img/${PropertyImage}.jpg" alt="">
+                <img src="/img/uploads/${PropertyImage}" alt="">
                 <div class="tag">
                     <span>For Sale</span>
                 </div>

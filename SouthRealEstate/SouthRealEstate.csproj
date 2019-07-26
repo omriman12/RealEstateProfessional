@@ -183,4 +183,9 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="uploads\" />
+    <Folder Include="wwwroot\img\uploads\" />
+  </ItemGroup>
+
 </Project>

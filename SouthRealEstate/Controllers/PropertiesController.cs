@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -11,6 +13,8 @@ using SouthRealEstate.DAL.Interfaces;
 using SouthRealEstate.DTOs;
 using SouthRealEstate.Interfaces;
 using SouthRealEstate.Models;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace SouthRealEstate.Controllers
 {
@@ -19,9 +23,10 @@ namespace SouthRealEstate.Controllers
         private static readonly log4net.ILog s_Logger = log4net.LogManager.GetLogger(typeof(PropertiesController));
 
         private readonly IPropertiesLogic m_PropertiesLogic;
-
-        public PropertiesController(IPropertiesLogic propertiesLogic)
+        private readonly IHostingEnvironment m_HostingEnvironment;
+        public PropertiesController(IHostingEnvironment env, IPropertiesLogic propertiesLogic)
         {
+            m_HostingEnvironment = env;
             m_PropertiesLogic = propertiesLogic;
         }
         
@@ -130,15 +135,23 @@ namespace SouthRealEstate.Controllers
 
             return retVal;
         }
-
+        
         [Route("api/properties/residental")]
         [HttpPost]
-        public async Task<IActionResult> AddResidentalPropertyAsync(ResidentalPropertyDTO residentalPropertyDTO)
+        public async Task<IActionResult> AddResidentalPropertyAsync()
         {
             ActionResult retVal = null;
 
             try
             {
+                ResidentalPropertyDTO residentalPropertyDTO = JsonConvert.DeserializeObject<ResidentalPropertyDTO>(
+                    Request.Form["residentalPropertyDTO"],
+                    new JsonSerializerSettings()
+                    {
+                        DefaultValueHandling = DefaultValueHandling.Populate,
+                        NullValueHandling = NullValueHandling.Ignore,
+                    });
+
                 var residentalPropertyEntity = new PropertiesResidental()
                 {
                     Id = residentalPropertyDTO.Id,
@@ -153,17 +166,32 @@ namespace SouthRealEstate.Controllers
                     IsFeatured = residentalPropertyDTO.IsFeatured,
                 };
 
-                if (residentalPropertyDTO.PropertyImages != null)
+                //images
+                var files = Request.Form.Files;
+                s_Logger.Info($"received:{files.Count} files");
+                if (files.Count > 0)
                 {
-                    residentalPropertyEntity.PropertiesResidentialImages = residentalPropertyDTO.PropertyImages.Select(imageName =>
-                        new PropertiesResidentialImages()
+                    residentalPropertyEntity.PropertiesResidentialImages = new List<PropertiesResidentialImages>();
+                    foreach (IFormFile file in files)
+                    {
+                        string fileNameRaw = file.FileName;
+                        string guid = Guid.NewGuid().ToString("N").Substring(0, 12);
+                        string fileNameGuid = string.Format("{0}_{1}", guid, fileNameRaw);
+                        string pathToSave = Path.Combine(m_HostingEnvironment.WebRootPath, @"img\uploads", fileNameGuid);
+                        using (var fileStream = new FileStream(pathToSave, FileMode.Create))
                         {
-                            ImageName = imageName
-                        }).ToList();
+                            await file.CopyToAsync(fileStream);
+                        }
+
+                        residentalPropertyEntity.PropertiesResidentialImages.Add(new PropertiesResidentialImages()
+                        {
+                            ImageName = fileNameGuid
+                        });
+                    }
                 }
 
                 PropertiesResidental propertiesResidental = await m_PropertiesLogic.AddResidentalPropertyAsync(residentalPropertyEntity);
-                retVal = Ok(propertiesResidental);
+                retVal = Ok();
             }
             catch (Exception ex)
             {
@@ -195,15 +223,6 @@ namespace SouthRealEstate.Controllers
                     Price = residentalPropertyDTO.Price,
                     IsFeatured = residentalPropertyDTO.IsFeatured,
                 };
-
-                if (residentalPropertyDTO.PropertyImages != null)
-                {
-                    residentalPropertyEntity.PropertiesResidentialImages = residentalPropertyDTO.PropertyImages.Select(imageName =>
-                        new PropertiesResidentialImages()
-                        {
-                            ImageName = imageName
-                        }).ToList();
-                }
 
                 PropertiesResidental propertiesResidental = await m_PropertiesLogic.UpdateResidentalPropertyAsync(residentalPropertyEntity);
                 retVal = Ok(propertiesResidental);

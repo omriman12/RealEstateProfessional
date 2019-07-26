@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SouthRealEstate.Helpers\SouthRealEstate.Helpers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scarfold\" />
+  </ItemGroup>
+
 </Project>

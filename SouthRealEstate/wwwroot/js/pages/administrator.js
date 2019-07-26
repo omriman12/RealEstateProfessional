@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿
+var residentalImages = [];
+var residentalImagesIds = [1];
+
+$(document).ready(function () {
+    //initiate table
     var table = $('#tbl__residental_properties').DataTable({
         responsive: true,
         ajax: "/api/properties/residental/datatable",
@@ -27,7 +32,7 @@
         ]
     });
 
-
+    //get cities
     $.ajax({
         url: `/api/cities`,
         method: 'GET',
@@ -49,13 +54,13 @@
         }
     });
 
-
+    //delete
     $(document).on("click", ".property-residental-delete", function () {
         var propertyId = $(this).attr('row_id').split('row_')[1];
         deleteResidentalProperty(propertyId);
     });
-
-
+    
+    //save
     $("#btn__add_property").click(function () {
         var property_title = $('#property_title').val();
         var property_desc = $('#property_desc').val();
@@ -88,11 +93,21 @@
             IsFeatured: property_is_featured === 'on',
         };
 
+        debugger;
+        var formData = new FormData();
+        formData.append('residentalPropertyDTO', JSON.stringify(data));
+        $.each(residentalImages, function (key, value) {
+            formData.append('file', value.Image);
+        });
+
+        var urlUploadImages = `/api/properties/residental`;
         $.ajax({
-            url: `/api/properties/residental`,
-            method: 'POST',
-            data: data,
-            dataType: 'json',
+            url: urlUploadImages,
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (data) {
                 $('#tbl__residental_properties').DataTable().ajax.reload();
                 toastr.success("Success");
@@ -110,7 +125,26 @@
         });
     });
 
+    //upload images
+    appendImages(residentalImagesIds);
+
+    $(document).on("click", "#btn__more_images", function () {
+        var lastImageId = residentalImagesIds[residentalImagesIds.length - 1];
+        var newImageId = lastImageId+1;
+        residentalImagesIds.push(newImageId);
+        appendImages([newImageId]);
+    });
 });
+
+function appendImages(idsArray) {
+    $.each(idsArray, function (index, id) {
+        let html = propertyAddImageTemplate(id);
+        $('#property_images_container').append(html);
+
+        //action bindings
+        addUploadImageBinding(id);
+    }); 
+}
 
 function deleteResidentalProperty(propertyId) {
 
@@ -135,7 +169,6 @@ function deleteResidentalProperty(propertyId) {
     });
 }
 
-
 function validateForm(property_title, property_desc, property_city, property_add, property_size,
     property_badrooms, property_bathrooms, property_pric) {
     var errText = '';
@@ -152,3 +185,44 @@ function validateForm(property_title, property_desc, property_city, property_add
 
     return errText;
 }
+
+/* image uploads*/
+function addUploadImageBinding(id) {
+    $(document).on("change", `#uploadBtn_${id}`, function () {
+        debugger;
+        if (this.files.length > 0) {
+            var newImage = {
+                Id : id,
+                Image : this.files[0]
+            }
+            residentalImages.push(newImage);
+            $(`#uploadFile_${id}`).val(this.files[0].name);
+        }
+        else {
+            residentalImages = residentalImages.filter((x) => x.Id !== id);
+            $(`#uploadFile_${id}`).val('');
+        }
+    });
+}
+
+function uploadimage(formData, url) {
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
+const propertyAddImageTemplate = (id) =>
+    `<div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+        <input class="mdl-textfield__input" placeholder="Image" type="text" id="uploadFile_${id}" readonly />
+        <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+            <i class="material-icons">attach_file</i><input type="file" id="uploadBtn_${id}">
+        </div>
+    </div>`;
