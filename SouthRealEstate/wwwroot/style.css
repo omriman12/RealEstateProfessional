@@ -824,10 +824,13 @@ img {
   z-index: 1;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms;
-  overflow: hidden; }
-  .single-featured-property .property-thumb {
-    position: relative;
-    z-index: 1; }
+  overflow: hidden; 
+}
+    .single-featured-property .property-thumb {
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
     .single-featured-property .property-thumb .tag span {
       height: 35px;
       padding: 0 20px;
