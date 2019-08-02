@@ -93,7 +93,6 @@ $(document).ready(function () {
             IsFeatured: property_is_featured === 'on',
         };
 
-        debugger;
         var formData = new FormData();
         formData.append('residentalPropertyDTO', JSON.stringify(data));
         $.each(residentalImages, function (key, value) {
@@ -189,7 +188,6 @@ function validateForm(property_title, property_desc, property_city, property_add
 /* image uploads*/
 function addUploadImageBinding(id) {
     $(document).on("change", `#uploadBtn_${id}`, function () {
-        debugger;
         if (this.files.length > 0) {
             var newImage = {
                 Id : id,
