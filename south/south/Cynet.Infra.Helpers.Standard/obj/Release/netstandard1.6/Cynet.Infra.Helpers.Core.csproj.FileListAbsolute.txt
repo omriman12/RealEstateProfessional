@@ -1,0 +1,4 @@
+C:\work\gitRepo\NugetFeed\Cynet.Infra.Helpers.Core\v1.0.0\Cynet.Infra.Helpers.Core\Source\Cynet.Infra.Helpers.Core\Cynet.Infra.Helpers.Core\obj\Release\netstandard1.6\Cynet.Infra.Helpers.Core.csprojResolveAssemblyReference.cache
+C:\work\gitRepo\NugetFeed\Cynet.Infra.Helpers.Core\v1.0.0\Cynet.Infra.Helpers.Core\Source\Cynet.Infra.Helpers.Core\Cynet.Infra.Helpers.Core\obj\Release\netstandard1.6\Cynet.Infra.Helpers.Core.csproj.CoreCompileInputs.cache
+C:\work\gitRepo\NugetFeed\Cynet.Infra.Helpers.Core\v1.0.0\Cynet.Infra.Helpers.Core\Source\Cynet.Infra.Helpers.Core\Cynet.Infra.Helpers.Core\obj\Release\netstandard1.6\Cynet.Infra.Helpers.Core.AssemblyInfoInputs.cache
+C:\work\gitRepo\NugetFeed\Cynet.Infra.Helpers.Core\v1.0.0\Cynet.Infra.Helpers.Core\Source\Cynet.Infra.Helpers.Core\Cynet.Infra.Helpers.Core\obj\Release\netstandard1.6\Cynet.Infra.Helpers.Core.AssemblyInfo.cs

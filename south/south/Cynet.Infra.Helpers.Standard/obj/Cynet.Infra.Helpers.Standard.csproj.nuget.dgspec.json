@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\work\\gitRepo\\NugetFeed\\Cynet.Infra.Helpers.Standard\\v3.2.0\\Cynet.Infra.Helpers.Standard\\Source\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard.csproj": {}
+  },
+  "projects": {
+    "C:\\work\\gitRepo\\NugetFeed\\Cynet.Infra.Helpers.Standard\\v3.2.0\\Cynet.Infra.Helpers.Standard\\Source\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard.csproj": {
+      "version": "1.0.1",
+      "restore": {
+        "projectUniqueName": "C:\\work\\gitRepo\\NugetFeed\\Cynet.Infra.Helpers.Standard\\v3.2.0\\Cynet.Infra.Helpers.Standard\\Source\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard.csproj",
+        "projectName": "Cynet.Infra.Helpers.Standard",
+        "projectPath": "C:\\work\\gitRepo\\NugetFeed\\Cynet.Infra.Helpers.Standard\\v3.2.0\\Cynet.Infra.Helpers.Standard\\Source\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard.csproj",
+        "packagesPath": "C:\\Users\\cynet\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\gitRepo\\NugetFeed\\Cynet.Infra.Helpers.Standard\\v3.2.0\\Cynet.Infra.Helpers.Standard\\Source\\Cynet.Infra.Helpers.Standard\\Cynet.Infra.Helpers.Standard\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\cynet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://192.168.1.179:8080/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.Web.Administration": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "Microsoft.Win32.Registry": {
+              "target": "Package",
+              "version": "[4.4.0, )"
+            },
+            "MurmurHash.NETStandard": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Data.Common": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.IO.FileSystem.DriveInfo": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.8, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
