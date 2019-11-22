@@ -73,7 +73,7 @@ $(document).ready(function () {
         var property_is_featured = $('#property_is_featured').val();
 
         var errText = '';
-        errText = validateForm(property_title, property_desc, property_city, property_add, property_size,
+        errText = validatePropertyAddForm(property_title, property_desc, property_city, property_add, property_size,
             property_badrooms, property_bathrooms, property_price);
 
         if (errText !== '') {
@@ -168,7 +168,7 @@ function deleteResidentalProperty(propertyId) {
     });
 }
 
-function validateForm(property_title, property_desc, property_city, property_add, property_size,
+function validatePropertyAddForm(property_title, property_desc, property_city, property_add, property_size,
     property_badrooms, property_bathrooms, property_pric) {
     var errText = '';
     if (property_title === '' ||

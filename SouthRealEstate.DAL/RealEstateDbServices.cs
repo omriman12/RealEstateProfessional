@@ -68,7 +68,6 @@ namespace SouthRealEstate.DAL
 
             return retVal;
         }
-
         public async Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty)
         {
             IEnumerable<PropertiesResidental> retVal = null;
@@ -144,7 +143,6 @@ namespace SouthRealEstate.DAL
 
             return retVal;
         }
-
         public async Task<PropertiesResidental> AddUpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental)
         {
             PropertiesResidental retVal = null;
@@ -203,5 +201,83 @@ namespace SouthRealEstate.DAL
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Agents>> GetAllAgentsAsync()
+        {
+            IEnumerable<Agents> retVal = null;
+
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySql(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    retVal = await context.Agents.ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during get all agents", ex);
+                throw;
+            }
+
+            return retVal;
+        }
+        public async Task<Agents> AddUpdateAgentsAsync(Agents agent)
+        {
+            Agents retVal = null;
+
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySql(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    var agentDB = await context.Agents.Where(x => x.Name == agent.Name).FirstOrDefaultAsync();
+                    if (agentDB == null)
+                    {
+                        context.Agents.Add(agent);
+                        retVal = agent;
+                    }
+                    else
+                    {
+                        agentDB.Phone = agent.Phone;
+                        agentDB.Email = agent.Email;
+                        agentDB.Details = agent.Details;
+                        agentDB.ImageName = agent.ImageName;
+                    }
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during add update agent", ex);
+                throw;
+            }
+
+            return retVal;
+        }
+        public async Task DeleteAgentAsync(int agentId)
+        {
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySql(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    context.RemoveRange(context.Agents.Where(x => x.Id == agentId));
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during delete agent by id:{agentId}", ex);
+                throw;
+            }
+        }
+
     }
 }

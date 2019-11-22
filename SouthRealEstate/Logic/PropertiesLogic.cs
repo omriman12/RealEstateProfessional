@@ -120,5 +120,42 @@ namespace SouthRealEstate.Logic
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Agents>> GetAllAgentsAsync()
+        {
+            try
+            {
+                return await m_RealEstateDbServices.GetAllAgentsAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<Agents> AddUpdateAgentsAsync(Agents agent)
+        {
+
+            try
+            {
+                return await m_RealEstateDbServices.AddUpdateAgentsAsync(agent);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task DeleteAgentAsync(int agentId)
+        {
+            try
+            {
+                await m_RealEstateDbServices.DeleteAgentAsync(agentId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -14,5 +14,9 @@ namespace SouthRealEstate.DAL.Interfaces
         Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty);
         Task<PropertiesResidental> AddUpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental);
         Task DeleteResidentalPropertyAsync(int propertiesResidentalId);
+
+        Task<IEnumerable<Agents>> GetAllAgentsAsync();
+        Task<Agents> AddUpdateAgentsAsync(Agents agent);
+        Task DeleteAgentAsync(int agentId);
     }
 }

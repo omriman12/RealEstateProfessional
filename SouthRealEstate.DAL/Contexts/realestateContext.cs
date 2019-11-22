@@ -19,6 +19,7 @@ namespace SouthRealEstate.DAL.Entities
         public virtual DbSet<Cities> Cities { get; set; }
         public virtual DbSet<PropertiesResidental> PropertiesResidental { get; set; }
         public virtual DbSet<PropertiesResidentialImages> PropertiesResidentialImages { get; set; }
+        public virtual DbSet<Agents> Agents { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -152,6 +153,40 @@ namespace SouthRealEstate.DAL.Entities
                     .HasColumnName("role")
                     .HasColumnType("tinyint(4)")
                     .HasDefaultValueSql("'0'");
+            });
+
+
+            modelBuilder.Entity<Agents>(entity =>
+            {
+                entity.ToTable("agents");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("bigint(20)");
+
+                entity.Property(e => e.Details)
+                    .IsRequired()
+                    .HasColumnName("details")
+                    .HasColumnType("varchar(5000)");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasColumnName("email")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.ImageName)
+                    .HasColumnName("image_name")
+                    .HasColumnType("varchar(200)");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasColumnName("phone")
+                    .HasColumnType("varchar(100)");
             });
         }
     }
