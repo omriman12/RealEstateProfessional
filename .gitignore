@@ -34,3 +34,5 @@
 /SouthRealEstate/Logs
 /SouthRealEstate/bin/Release/netcoreapp2.2
 /SouthRealEstate/wwwroot/img/uploads
+/SouthRealEstate.Model/obj
+/SouthRealEstate.Model/bin/Debug/netstandard2.0

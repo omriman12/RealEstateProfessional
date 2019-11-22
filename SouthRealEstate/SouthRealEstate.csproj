@@ -133,6 +133,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SouthRealEstate.DAL\SouthRealEstate.DAL.csproj" />
     <ProjectReference Include="..\SouthRealEstate.Helpers\SouthRealEstate.Helpers.csproj" />
+    <ProjectReference Include="..\SouthRealEstate.Model\SouthRealEstate.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

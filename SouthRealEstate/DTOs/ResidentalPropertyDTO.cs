@@ -19,6 +19,7 @@ namespace SouthRealEstate.DTOs
         public bool IsNew { get; set; }
         public bool IsFeatured { get; set; }
         public KeyValuePair<string, string> AdditionalFeatures { get; set; }
+        public IEnumerable<string> PropertyImages { get; set; }
 
     }
 }

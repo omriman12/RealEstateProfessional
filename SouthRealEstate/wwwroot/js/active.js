@@ -41,13 +41,9 @@
 
     // :: Tooltip Active Code
     if ($.fn.tooltip) {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
-    // :: Nice Select Active Code
-    if ($.fn.niceSelect) {
-        $('select').niceSelect();
-    }
 
     // :: Owl Carousel Active Code
     if ($.fn.owlCarousel) {
@@ -163,25 +159,5 @@
     if ($window.width() > 767) {
         new WOW().init();
     }
-
-    // :: Slider Range
-    $('.slider-range-price').each(function () {
-        var min = jQuery(this).data('min');
-        var max = jQuery(this).data('max');
-        var unit = jQuery(this).data('unit');
-        var value_min = jQuery(this).data('value-min');
-        var value_max = jQuery(this).data('value-max');
-        var t = $(this);
-        $(this).slider({
-            range: true,
-            min: min,
-            max: max,
-            values: [value_min, value_max],
-            slide: function (event, ui) {
-                var result = ui.values[0] + unit + ' - ' + ui.values[1] + unit;
-                t.closest('.slider-range').find('.range').html(result);
-            }
-        });
-    })
 
 })(jQuery);

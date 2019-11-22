@@ -15,6 +15,7 @@ using SouthRealEstate.Interfaces;
 using SouthRealEstate.Models;
 using Newtonsoft;
 using Newtonsoft.Json;
+using SouthRealEstate.Model;
 
 namespace SouthRealEstate.Controllers
 {
@@ -256,5 +257,65 @@ namespace SouthRealEstate.Controllers
 
             return retVal;
         }
+
+
+        [Route("api/properties/search")]
+        [HttpPost]
+        public async Task<IActionResult> SearchPropertyAsync(SearchPropertyDTO searchPropertyDTO)
+        {
+            ActionResult retVal = null;
+
+            try
+            {
+                //get data
+                var searchProperty = new SearchProperty()
+                {
+                    FreeSearch = searchPropertyDTO.FreeSearch,
+                    CityId = searchPropertyDTO.CityId,
+                    PropertyType = searchPropertyDTO.PropertyType,
+                    SizeMetersFrom = searchPropertyDTO.SizeMetersFrom,
+                    SizeMetersTo = searchPropertyDTO.SizeMetersTo,
+                    BadRoomsCountFrom = searchPropertyDTO.BadRoomsCountFrom,
+                    BadRoomsCountTo = searchPropertyDTO.BadRoomsCountTo,
+                    PriceFrom = searchPropertyDTO.PriceFrom,
+                    PriceTo = searchPropertyDTO.PriceTo,
+                };
+                IEnumerable<PropertiesResidental> residentalProperties = await m_PropertiesLogic.SearchPropertyAsync(searchProperty);
+
+                //return dto
+                var residentalPropertiesDTO = residentalProperties.Select(x =>
+                {
+                    var residentalPropertyDTO = new ResidentalPropertyDTO
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        Address = x.Address,
+                        CityId = x.CityId,
+                        SizeMeters = x.SizeMeters,
+                        BadRoomsCount = x.BadRoomsCount,
+                        BathRoomsCount = x.BathRoomsCount,
+                        Price = x.Price,
+                    };
+
+                    if (x.PropertiesResidentialImages != null && x.PropertiesResidentialImages.Any())
+                    {
+                        residentalPropertyDTO.PropertyImages = x.PropertiesResidentialImages.Select(i => i.ImageName);
+                    }
+
+                    return residentalPropertyDTO;
+                });
+
+                retVal = Ok(residentalPropertiesDTO);
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error(ex);
+                retVal = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return retVal;
+        }
+
     }
 }

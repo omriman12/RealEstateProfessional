@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthRealEstate.Console", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{159A7160-49F5-46B9-8C69-29F40CEEF2ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthRealEstate.DAL.Console", "SouthRealEstate.DAL.Console\SouthRealEstate.DAL.Console.csproj", "{96933DE0-78F4-4F16-AA05-F46AB8916475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthRealEstate.DAL.Console", "SouthRealEstate.DAL.Console\SouthRealEstate.DAL.Console.csproj", "{96933DE0-78F4-4F16-AA05-F46AB8916475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthRealEstate.Model", "SouthRealEstate.Model\SouthRealEstate.Model.csproj", "{18222938-1A56-4E59-A5F8-43CB9741031C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{96933DE0-78F4-4F16-AA05-F46AB8916475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96933DE0-78F4-4F16-AA05-F46AB8916475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96933DE0-78F4-4F16-AA05-F46AB8916475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18222938-1A56-4E59-A5F8-43CB9741031C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18222938-1A56-4E59-A5F8-43CB9741031C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18222938-1A56-4E59-A5F8-43CB9741031C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18222938-1A56-4E59-A5F8-43CB9741031C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

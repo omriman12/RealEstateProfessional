@@ -1,6 +1,7 @@
 ﻿using SouthRealEstate.DAL.Entities;
 using SouthRealEstate.DAL.Interfaces;
 using SouthRealEstate.Interfaces;
+using SouthRealEstate.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,18 @@ namespace SouthRealEstate.Logic
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty)
+        {
+            try
+            {
+                return await m_RealEstateDbServices.SearchPropertyAsync(searchProperty);
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }

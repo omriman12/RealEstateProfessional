@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SouthRealEstate.DAL.Entities;
 using SouthRealEstate.DAL.Interfaces;
+using SouthRealEstate.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,82 @@ namespace SouthRealEstate.DAL
                 using (var context = new RealestateContext(optionsBuilder.Options))
                 {
                     retVal = await context.PropertiesResidental
+                        .Include(x => x.PropertiesResidentialImages)
+                        .Include(x => x.City)
+                        .ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during get all properties", ex);
+                throw;
+            }
+
+            return retVal;
+        }
+
+        public async Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty)
+        {
+            IEnumerable<PropertiesResidental> retVal = null;
+
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySql(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    var searchQueriable = context.PropertiesResidental.Where(x=> true);
+
+                    /* badrooms */
+                    if (searchProperty.BadRoomsCountFrom.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.BadRoomsCount >= searchProperty.BadRoomsCountFrom.Value);
+                    }
+
+                    if (searchProperty.BadRoomsCountTo.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.BadRoomsCount <= searchProperty.BadRoomsCountTo.Value);
+                    }
+
+                    /* size */
+                    if (searchProperty.SizeMetersFrom.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.SizeMeters >= searchProperty.SizeMetersFrom.Value);
+                    }
+
+                    if (searchProperty.SizeMetersTo.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.SizeMeters <= searchProperty.SizeMetersTo.Value);
+                    }
+
+
+                    /* price */
+                    if (searchProperty.PriceFrom.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.Price >= searchProperty.PriceFrom.Value);
+                    }
+
+                    if (searchProperty.PriceTo.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.Price <= searchProperty.PriceTo.Value);
+                    }
+
+                    /* city */
+                    if (searchProperty.CityId.HasValue)
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.CityId == searchProperty.CityId.Value);
+                    }
+
+                    /* free search */
+                    if (!string.IsNullOrWhiteSpace(searchProperty.FreeSearch))
+                    {
+                        searchQueriable = searchQueriable.Where(x => x.Title.Contains(searchProperty.FreeSearch)
+                         || x.Description.Contains(searchProperty.FreeSearch)
+                         || x.Address.Contains(searchProperty.FreeSearch));
+                    }
+
+                    retVal = await searchQueriable
                         .Include(x => x.PropertiesResidentialImages)
                         .Include(x => x.City)
                         .ToListAsync();
