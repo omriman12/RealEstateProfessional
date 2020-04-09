@@ -63,6 +63,20 @@ namespace SouthRealEstate.Logic
                 throw;
             }
         }
+        public async Task<PropertiesResidental> GetResidentalPropertyAsync(long propertyId)
+        {
+
+            try
+            {
+                var properties = await m_RealEstateDbServices.GetAllResidentalPropertiesAsync();
+                return properties.SingleOrDefault(x => x.Id == propertyId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public async Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty)
         {

@@ -42,6 +42,45 @@ namespace SouthRealEstate.Controllers
             return View();
         }
 
+
+        [Route("api/properties/residental/{propertyId}")]
+        [HttpGet]
+        public async Task<IActionResult> GetResidentalPropertyAsync(int propertyId)
+        {
+            ActionResult retVal = null;
+
+            try
+            {
+                PropertiesResidental propertiesResidental = await m_PropertiesLogic.GetResidentalPropertyAsync(propertyId);
+
+                var residentalPropertyDTO = new ResidentalPropertyDTO
+                {
+                    Id = propertiesResidental.Id,
+                    Title = propertiesResidental.Title,
+                    Description = propertiesResidental.Description,
+                    Address = propertiesResidental.Address,
+                    CityId = propertiesResidental.CityId,
+                    SizeMeters = propertiesResidental.SizeMeters,
+                    BadRoomsCount = propertiesResidental.BadRoomsCount,
+                    BathRoomsCount = propertiesResidental.BathRoomsCount,
+                    Price = propertiesResidental.Price,
+                };
+
+                if (propertiesResidental.PropertiesResidentialImages != null && propertiesResidental.PropertiesResidentialImages.Any())
+                {
+                    residentalPropertyDTO.PropertyImages = propertiesResidental.PropertiesResidentialImages.Select(i => i.ImageName);
+                }
+                retVal = Ok(residentalPropertyDTO);
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error(ex);
+                retVal = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return retVal;
+        }
+
         [Route("api/cities")]
         [HttpGet]
         public async Task<IActionResult> GetAllCities()

@@ -12,6 +12,7 @@ namespace SouthRealEstate.Interfaces
         Task<IEnumerable<Cities>> GetCityEntitiesAsync();
         Task<IEnumerable<PropertiesResidental>> GetAllFeautredResidentalPropertiesAsync();
         Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync();
+        Task<PropertiesResidental> GetResidentalPropertyAsync(long propertyId);
         Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty);
         Task<PropertiesResidental> AddResidentalPropertyAsync(PropertiesResidental propertiesResidental);
         Task<PropertiesResidental> UpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental);
