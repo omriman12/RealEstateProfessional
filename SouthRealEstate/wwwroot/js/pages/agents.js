@@ -18,8 +18,8 @@ $(document).ready(function () {
                     console.log();
                     return `<div class=\'agents-tbl-actions-wrapper\'>
                                 <button row_id=\'${row.DT_RowId}'\' class=\'agent-delete mdl-button mdl-js-button mdl-button--accent\'> Delete </button >
-                                <button row_id=\'${row.DT_RowId}'\' class=\'agent-edit mdl-button mdl-js-button mdl-button--primary\'> Edit </button >
                             </div>`;
+                    //<button row_id=\'${row.DT_RowId}'\' class=\'agent-edit mdl-button mdl-js-button mdl-button--primary\'> Edit </button >
                 },
                 className: "dt-body-center"
             }
