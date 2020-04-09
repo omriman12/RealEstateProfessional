@@ -36,3 +36,6 @@
 /SouthRealEstate/wwwroot/img/uploads
 /SouthRealEstate.Model/obj
 /SouthRealEstate.Model/bin/Debug/netstandard2.0
+/SouthRealEstate.Model/bin/Release/netstandard2.0/SouthRealEstate.Model.pdb
+/SouthRealEstate.Model/bin/Release/netstandard2.0/SouthRealEstate.Model.dll
+/SouthRealEstate.Model/bin/Release/netstandard2.0/SouthRealEstate.Model.deps.json

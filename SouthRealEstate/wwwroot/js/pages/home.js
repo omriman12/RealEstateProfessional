@@ -1,6 +1,6 @@
 ﻿const featuredPropertyTemplate = ({ Id, Title, Description, Address, SizeMeters, BadRoomsCount, BathRoomsCount, Price, IsNew, PropertyImage }) => 
     `<div class="col-12 col-md-6 col-xl-4" >
-        <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms" id="${Id}">
+        <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms" name="${Id}">
             <!-- Property Thumbnail -->
             <div class="property-thumb">
                 <img src="/img/uploads/${PropertyImage}" alt="">
