@@ -55,16 +55,15 @@ $(document).ready(function () {
         url: `/api/properties/residental/${propertyId}`,
         type: 'GET',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             $('#sp__single_prop_content').html(singlePropertyTemplate(data));
 
             $('#sp__single_prop_images').html(singlePropertyImagesTemplate(data.PropertyImages));
 
-
-            $('.featured-properties-slides, .single-listings-sliders').owlCarousel({
+            $('.single-listings-sliders').owlCarousel({
                 items: 1,
                 margin: 0,
-                loop: true,
+                loop: data.PropertyImages.length > 1 ? true : false,
                 autoplay: true,
                 autoplayTimeout: 5000,
                 smartSpeed: 1000,

@@ -88,7 +88,7 @@ $(document).ready(function () {
             type: 'POST',
             data: data,
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#properties_content').html(data.map(featuredPropertyTemplate).join(''));
             },
             error: function (request, errorType, errorMessage) {
