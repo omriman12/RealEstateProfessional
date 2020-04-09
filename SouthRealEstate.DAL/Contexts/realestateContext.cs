@@ -48,6 +48,9 @@ namespace SouthRealEstate.DAL.Entities
             {
                 entity.ToTable("properties_residental");
 
+                entity.HasIndex(e => e.AgentId)
+                    .HasName("agent_FK");
+
                 entity.HasIndex(e => e.CityId)
                     .HasName("city_FK_idx");
 
@@ -59,6 +62,10 @@ namespace SouthRealEstate.DAL.Entities
                     .IsRequired()
                     .HasColumnName("address")
                     .HasColumnType("varchar(100)");
+
+                entity.Property(e => e.AgentId)
+                    .HasColumnName("agent_id")
+                    .HasColumnType("bigint(20)");
 
                 entity.Property(e => e.BadRoomsCount)
                     .HasColumnName("bad_rooms_count")
@@ -93,6 +100,12 @@ namespace SouthRealEstate.DAL.Entities
                     .IsRequired()
                     .HasColumnName("title")
                     .HasColumnType("varchar(100)");
+
+                entity.HasOne(d => d.Agent)
+                    .WithMany(p => p.PropertiesResidental)
+                    .HasForeignKey(d => d.AgentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("agent_FK");
 
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.PropertiesResidental)

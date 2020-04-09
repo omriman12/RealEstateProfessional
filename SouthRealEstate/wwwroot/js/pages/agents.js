@@ -119,17 +119,3 @@ function validateAgnetsForm(agent_name, agent_phone, agent_email, agent_Details)
 
     return errText;
 }
-/* image uploads*/
-function addUploadImageBinding(id) {
-    $(document).on("change", `#uploadAgentImageBtn`, function () {
-        if (this.files.length > 0) {
-            agentImage = this.files[0];
-            $(`#uploadFile`).val($(`#uploadAgentImage`).val(this.files[0].name));
-            
-        }
-        else {
-            $(`#uploadFile`).val('');
-            agentImage = null;
-        }
-    });
-}

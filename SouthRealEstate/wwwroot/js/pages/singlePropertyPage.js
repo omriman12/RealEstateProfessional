@@ -26,26 +26,38 @@ $(document).ready(function () {
                     <span>${SizeMeters}m</span>
                 </div>
             </div>
-            <!-- Core Features -->
-            <ul class="listings-core-features d-flex align-items-center">
-                <li><i class="fa fa-check" aria-hidden="true"></i> Gated Community</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Automatic Sprinklers</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Ocean Views</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Private Patio</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Beach Access</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Rooftop Terrace</li>
-            </ul>`;
+            `;
 
-
+    //< !--Core Features-- >
+    //    <ul class="listings-core-features d-flex align-items-center">
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Gated Community</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Automatic Sprinklers</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Ocean Views</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Heated Floors</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Private Patio</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Window Shutters</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Fireplace</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Beach Access</li>
+    //        <li><i class="fa fa-check" aria-hidden="true"></i> Rooftop Terrace</li>
+    //    </ul>
+    
     const singlePropertyImagesTemplate = (PropertyImages) => {
         return PropertyImages.map(x => `<img src="/img/uploads/${x}" alt="">`);
     };
+
+    const singlePropertyAgentTemplate = ({ Id, Name, Email, Phone, Details, ImageName }) =>
+        `<div class="realtor-info">
+            <img src="/img/uploads/${ImageName}" alt="">
+            <div class="realtor---info">
+                <h2>${Name}</h2>
+                <p>Realtor</p>
+                <h6><img src="/img/icons/phone-call.png" alt=""> ${Phone}</h6>
+                <h6><img src="/img/icons/envelope.png" alt=""> ${Email}</h6>
+            </div>
+        </div>`;
 
 
     var urlParams = new URLSearchParams(window.location.search);
@@ -55,11 +67,14 @@ $(document).ready(function () {
         url: `/api/properties/residental/${propertyId}`,
         type: 'GET',
         success: function (data) {
-            //console.log(data);
+            console.log(data);
             $('#sp__single_prop_content').html(singlePropertyTemplate(data));
 
             $('#sp__single_prop_images').html(singlePropertyImagesTemplate(data.PropertyImages));
 
+            $('.contact-realtor-wrapper').html(singlePropertyAgentTemplate(data.Agent));
+            
+            //init slider
             $('.single-listings-sliders').owlCarousel({
                 items: 1,
                 margin: 0,

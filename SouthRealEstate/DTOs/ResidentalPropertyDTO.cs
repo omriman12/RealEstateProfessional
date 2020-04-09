@@ -18,8 +18,9 @@ namespace SouthRealEstate.DTOs
         public int Price { get; set; }
         public bool IsNew { get; set; }
         public bool IsFeatured { get; set; }
-        public KeyValuePair<string, string> AdditionalFeatures { get; set; }
+        //public KeyValuePair<string, string> AdditionalFeatures { get; set; }
         public IEnumerable<string> PropertyImages { get; set; }
-
+        public long AgentId { get; set; }
+        public AgentDTO Agent { get; set; }
     }
 }

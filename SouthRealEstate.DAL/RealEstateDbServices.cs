@@ -57,6 +57,7 @@ namespace SouthRealEstate.DAL
                     retVal = await context.PropertiesResidental
                         .Include(x => x.PropertiesResidentialImages)
                         .Include(x => x.City)
+                        .Include(x => x.Agent)
                         .ToListAsync();
                 }
             }
@@ -170,6 +171,7 @@ namespace SouthRealEstate.DAL
                         propertyDB.BadRoomsCount = propertiesResidental.BadRoomsCount;
                         propertyDB.BathRoomsCount = propertiesResidental.BathRoomsCount;
                         propertyDB.Price = propertiesResidental.Price;
+                        propertyDB.AgentId = propertiesResidental.AgentId;
                     }
                     await context.SaveChangesAsync();
                 }

@@ -42,45 +42,6 @@ namespace SouthRealEstate.Controllers
             return View();
         }
 
-
-        [Route("api/properties/residental/{propertyId}")]
-        [HttpGet]
-        public async Task<IActionResult> GetResidentalPropertyAsync(int propertyId)
-        {
-            ActionResult retVal = null;
-
-            try
-            {
-                PropertiesResidental propertiesResidental = await m_PropertiesLogic.GetResidentalPropertyAsync(propertyId);
-
-                var residentalPropertyDTO = new ResidentalPropertyDTO
-                {
-                    Id = propertiesResidental.Id,
-                    Title = propertiesResidental.Title,
-                    Description = propertiesResidental.Description,
-                    Address = propertiesResidental.Address,
-                    CityId = propertiesResidental.CityId,
-                    SizeMeters = propertiesResidental.SizeMeters,
-                    BadRoomsCount = propertiesResidental.BadRoomsCount,
-                    BathRoomsCount = propertiesResidental.BathRoomsCount,
-                    Price = propertiesResidental.Price,
-                };
-
-                if (propertiesResidental.PropertiesResidentialImages != null && propertiesResidental.PropertiesResidentialImages.Any())
-                {
-                    residentalPropertyDTO.PropertyImages = propertiesResidental.PropertiesResidentialImages.Select(i => i.ImageName);
-                }
-                retVal = Ok(residentalPropertyDTO);
-            }
-            catch (Exception ex)
-            {
-                s_Logger.Error(ex);
-                retVal = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-
-            return retVal;
-        }
-
         [Route("api/cities")]
         [HttpGet]
         public async Task<IActionResult> GetAllCities()
@@ -154,12 +115,13 @@ namespace SouthRealEstate.Controllers
                     data.Add("Title", property.Title);
                     data.Add("Description", property.Description);
                     data.Add("Address", property.Address);
-                    //data.Add("CityId", property.CityId);
+                    data.Add("City", property.City.Name);
                     data.Add("SizeMeters", property.SizeMeters);
                     data.Add("BadRoomsCount", property.BadRoomsCount);
                     data.Add("BathRoomsCount", property.BathRoomsCount);
                     data.Add("Price", property.Price);
                     data.Add("IsFeatured", property.IsFeatured);
+                    data.Add("Agent", property.Agent.Name);
                     data.Add("actions", "");
                     dataArray.Add(data);
                     i++;
@@ -204,6 +166,7 @@ namespace SouthRealEstate.Controllers
                     BathRoomsCount = residentalPropertyDTO.BathRoomsCount,
                     Price = residentalPropertyDTO.Price,
                     IsFeatured = residentalPropertyDTO.IsFeatured,
+                    AgentId = residentalPropertyDTO.AgentId
                 };
 
                 //images
@@ -262,10 +225,62 @@ namespace SouthRealEstate.Controllers
                     BathRoomsCount = residentalPropertyDTO.BathRoomsCount,
                     Price = residentalPropertyDTO.Price,
                     IsFeatured = residentalPropertyDTO.IsFeatured,
+                    AgentId = residentalPropertyDTO.AgentId
                 };
 
                 PropertiesResidental propertiesResidental = await m_PropertiesLogic.UpdateResidentalPropertyAsync(residentalPropertyEntity);
                 retVal = Ok(propertiesResidental);
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error(ex);
+                retVal = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return retVal;
+        }
+
+
+        [Route("api/properties/residental/{propertyId}")]
+        [HttpGet]
+        public async Task<IActionResult> GetResidentalPropertyAsync(int propertyId)
+        {
+            ActionResult retVal = null;
+
+            try
+            {
+                PropertiesResidental propertiesResidental = await m_PropertiesLogic.GetResidentalPropertyAsync(propertyId);
+
+
+                var agentDTO = new AgentDTO()
+                {
+                    Id = propertiesResidental.Agent.Id,
+                    Name = propertiesResidental.Agent.Name,
+                    Email = propertiesResidental.Agent.Email,
+                    Phone = propertiesResidental.Agent.Phone,
+                    Details = propertiesResidental.Agent.Details,
+                    ImageName = propertiesResidental.Agent.ImageName
+                };
+
+                var residentalPropertyDTO = new ResidentalPropertyDTO
+                {
+                    Id = propertiesResidental.Id,
+                    Title = propertiesResidental.Title,
+                    Description = propertiesResidental.Description,
+                    Address = propertiesResidental.Address,
+                    CityId = propertiesResidental.CityId,
+                    SizeMeters = propertiesResidental.SizeMeters,
+                    BadRoomsCount = propertiesResidental.BadRoomsCount,
+                    BathRoomsCount = propertiesResidental.BathRoomsCount,
+                    Price = propertiesResidental.Price,
+                    Agent = agentDTO
+                };
+
+                if (propertiesResidental.PropertiesResidentialImages != null && propertiesResidental.PropertiesResidentialImages.Any())
+                {
+                    residentalPropertyDTO.PropertyImages = propertiesResidental.PropertiesResidentialImages.Select(i => i.ImageName);
+                }
+                retVal = Ok(residentalPropertyDTO);
             }
             catch (Exception ex)
             {

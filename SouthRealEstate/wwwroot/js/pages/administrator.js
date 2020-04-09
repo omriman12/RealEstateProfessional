@@ -10,15 +10,15 @@ $(document).ready(function () {
         "columns": [
             { "data": "Title" },
             { "data": "Description" },
+            { "data": "City" },
             { "data": "Address" },
-            //{ "data": "CityId" },
             { "data": "SizeMeters" },
             { "data": "BadRoomsCount" },
             { "data": "BathRoomsCount" },
             { "data": "Price" },
             { "data": "IsFeatured" },
+            { "data": "Agent" },
             {
-                width: "20%" ,
                 data: "actions",
                 render: function (data, type, row) {
                     console.log();
@@ -55,6 +55,29 @@ $(document).ready(function () {
         }
     });
 
+
+    //get agents
+    $.ajax({
+        url: `/api/agents`,
+        method: 'GET',
+        dataType: 'json',
+        success: function (agents) {
+            $.each(agents, function (index, agent) {
+                $('#property_agent_sb').append($('<option></option>').val(agent.Id).html(agent.Name));
+            });
+        },
+        error: function (request, errorType, errorMessage) {
+            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+            toastr.error("error gettings agents list");
+        },
+        beforeSend: function () {
+            //$.blockUI({ message: 'Please Wait...', overlayCSS: { backgroundColor: '#fff' } });
+        },
+        complete: function () {
+            //$.unblockUI({ overlayCSS: { backgroundColor: '#00f' } });
+        }
+    });
+
     //delete
     $(document).on("click", ".property-residental-delete", function () {
         var propertyId = $(this).attr('row_id').split('row_')[1];
@@ -72,10 +95,11 @@ $(document).ready(function () {
         var property_bathrooms = $('#property_bathrooms').val();
         var property_price = $('#property_price').val();
         var property_is_featured = $('#property_is_featured').val();
+        var property_agent_id = $('#property_agent_sb').val();
 
         var errText = '';
         errText = validatePropertyAddForm(property_title, property_desc, property_city, property_add, property_size,
-            property_badrooms, property_bathrooms, property_price);
+            property_badrooms, property_bathrooms, property_price, property_agent_id);
 
         if (errText !== '') {
             toastr.error(errText);
@@ -92,6 +116,7 @@ $(document).ready(function () {
             BathRoomsCount: property_bathrooms,
             Price: property_price,
             IsFeatured: property_is_featured === 'on',
+            AgentId: property_agent_id
         };
 
         var formData = new FormData();
@@ -100,9 +125,9 @@ $(document).ready(function () {
             formData.append('file', value.Image);
         });
 
-        var urlUploadImages = `/api/properties/residental`;
+        var urlAddProperty = `/api/properties/residental`;
         $.ajax({
-            url: urlUploadImages,
+            url: urlAddProperty,
             type: 'POST',
             data: formData,
             cache: false,
@@ -142,7 +167,7 @@ function appendImages(idsArray) {
         $('#property_images_container').append(html);
 
         //action bindings
-        addUploadImageBinding(id);
+        addUploadPropertyImageBinding(id);
     }); 
 }
 
@@ -170,7 +195,7 @@ function deleteResidentalProperty(propertyId) {
 }
 
 function validatePropertyAddForm(property_title, property_desc, property_city, property_add, property_size,
-    property_badrooms, property_bathrooms, property_pric) {
+    property_badrooms, property_bathrooms, property_pric, property_agent) {
     var errText = '';
     if (property_title === '' ||
         property_desc === '' ||
@@ -179,7 +204,8 @@ function validatePropertyAddForm(property_title, property_desc, property_city, p
         property_size === '' ||
         property_badrooms === '' ||
         property_bathrooms === '' ||
-        property_price === '') {
+        property_price === '' ||
+        property_agent === '') {
         errText = 'Please fill all the missing fields';
     }
 
@@ -187,7 +213,7 @@ function validatePropertyAddForm(property_title, property_desc, property_city, p
 }
 
 /* image uploads*/
-function addUploadImageBinding(id) {
+function addUploadPropertyImageBinding(id) {
     $(document).on("change", `#uploadBtn_${id}`, function () {
         if (this.files.length > 0) {
             var newImage = {
