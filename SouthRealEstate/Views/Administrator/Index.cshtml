@@ -17,8 +17,9 @@
         <main class="mdl-layout__content">
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                 <div class="mdl-tabs__tab-bar">
-                    <a href="#tab-panel1" class="mdl-tabs__tab is-active">Properties</a>
+                    <a href="#tab-panel1" id="tab__properties" class="mdl-tabs__tab is-active">Properties</a>
                     <a href="#tab-panel2" class="mdl-tabs__tab">Agents</a>
+                    <a href="#tab-panel3" class="mdl-tabs__tab">Cities</a>
                 </div>
 
                 <div class="mdl-tabs__panel is-active" id="tab-panel1">
@@ -114,16 +115,16 @@
                                             <label class="mdl-textfield__label" for="RelatedAgent">Agent</label>
                                         </div>
                                         @*<div class="mdl-textfield mdl-js-textfield mdl-textfield--file" id="extra_property_feature_wrapper">
-                                            <div id="extra_property_features_container">
-                                            </div>
-                                            <div id="btn__more_property_feature">
-                                                <i class="material-icons">add</i>
-                                            </div>
-                                        </div>
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="text" id="property_">
-                                            <label class="mdl-textfield__label">Address</label>
-                                        </div>*@
+                                    <div id="extra_property_features_container">
+                                    </div>
+                                    <div id="btn__more_property_feature">
+                                        <i class="material-icons">add</i>
+                                    </div>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="property_">
+                                    <label class="mdl-textfield__label">Address</label>
+                                </div>*@
                                     </form>
                                 </div>
 
@@ -196,6 +197,31 @@
                                 </div>
 
                                 <button id="btn__add_agent" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mdl-tabs__panel" id="tab-panel3">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-card mdl-shadow--2dp">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Add City</h2>
+                                </div>
+
+                                <div class="mdl-card__supporting-text">
+                                    <form action="#">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="add_city-name">
+                                            <label class="mdl-textfield__label">Name</label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <button id="btn__add_city" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                     Add
                                 </button>
                             </div>

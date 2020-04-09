@@ -34,48 +34,14 @@ $(document).ready(function () {
     });
 
     //get cities
-    $.ajax({
-        url: `/api/cities`,
-        method: 'GET',
-        dataType: 'json',
-        success: function (cities) {
-            $.each(cities, function (index, city) {
-                $('#property_city_sb').append($('<option></option>').val(city.Id).html(city.Name));
-            }); 
-        },
-        error: function (request, errorType, errorMessage) {
-            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
-            toastr.error("error gettings cities list");
-        },
-        beforeSend: function () {
-            //$.blockUI({ message: 'Please Wait...', overlayCSS: { backgroundColor: '#fff' } });
-        },
-        complete: function () {
-            //$.unblockUI({ overlayCSS: { backgroundColor: '#00f' } });
-        }
-    });
-
+    getCities();
 
     //get agents
-    $.ajax({
-        url: `/api/agents`,
-        method: 'GET',
-        dataType: 'json',
-        success: function (agents) {
-            $.each(agents, function (index, agent) {
-                $('#property_agent_sb').append($('<option></option>').val(agent.Id).html(agent.Name));
-            });
-        },
-        error: function (request, errorType, errorMessage) {
-            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
-            toastr.error("error gettings agents list");
-        },
-        beforeSend: function () {
-            //$.blockUI({ message: 'Please Wait...', overlayCSS: { backgroundColor: '#fff' } });
-        },
-        complete: function () {
-            //$.unblockUI({ overlayCSS: { backgroundColor: '#00f' } });
-        }
+    getAgents();
+
+    $(document).on("click", "#tab__properties", function () {
+        getCities();
+        getAgents();
     });
 
     //delete
@@ -159,7 +125,61 @@ $(document).ready(function () {
         residentalImagesIds.push(newImageId);
         appendImages([newImageId]);
     });
+
+    $(document).on("click", "#btn__add_city", function () {
+        var cityName = $('#add_city-name').val();
+        $.ajax({
+            url: '/api/cities',
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(cityName),
+            success: function (data) {
+                toastr.success("Success");
+            },
+            error: function (request, errorType, errorMessage) {
+                console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+                toastr.error("error");
+            },
+        });
+    });    
 });
+
+function getAgents() {
+    $.ajax({
+        url: `/api/agents`,
+        method: 'GET',
+        dataType: 'json',
+        success: function (agents) {
+            $('#property_agent_sb').html('<option></option>');
+            $.each(agents, function (index, agent) {
+                $('#property_agent_sb').append($('<option></option>').val(agent.Id).html(agent.Name));
+            });
+        },
+        error: function (request, errorType, errorMessage) {
+            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+            toastr.error("error gettings agents list");
+        },
+    });
+}
+
+function getCities() {
+    $.ajax({
+        url: `/api/cities`,
+        method: 'GET',
+        dataType: 'json',
+        success: function (cities) {
+            $('#property_city_sb').html('<option></option>');
+            $.each(cities, function (index, city) {
+                $('#property_city_sb').append($('<option></option>').val(city.Id).html(city.Name));
+            });
+        },
+        error: function (request, errorType, errorMessage) {
+            console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+            toastr.error("error gettings cities list");
+        },
+    });
+}
 
 function appendImages(idsArray) {
     $.each(idsArray, function (index, id) {

@@ -43,6 +43,32 @@ namespace SouthRealEstate.DAL
 
             return retVal;
         }
+
+        public async Task<Cities> AddCityAsync(Cities city)
+        {
+            Cities retVal = null;
+
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<RealestateContext>();
+                optionsBuilder.UseMySql(m_ConString);
+
+                using (var context = new RealestateContext(optionsBuilder.Options))
+                {
+                    context.Cities.Add(city);
+                    retVal = city;
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error($"error occurred during add city:{city.Name}", ex);
+                throw;
+            }
+
+            return retVal;
+        }
+        
         public async Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync()
         {
             IEnumerable<PropertiesResidental> retVal = null;

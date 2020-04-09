@@ -10,6 +10,7 @@ namespace SouthRealEstate.DAL.Interfaces
     public interface IRealEstateDbServices
     {
         Task<IEnumerable<Cities>> GetAllCitiesAsync();
+        Task<Cities> AddCityAsync(Cities city);
         Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync();
         Task<IEnumerable<PropertiesResidental>> SearchPropertyAsync(SearchProperty searchProperty);
         Task<PropertiesResidental> AddUpdateResidentalPropertyAsync(PropertiesResidental propertiesResidental);

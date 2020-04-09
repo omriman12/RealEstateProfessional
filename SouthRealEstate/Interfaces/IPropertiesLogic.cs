@@ -10,6 +10,7 @@ namespace SouthRealEstate.Interfaces
     public interface IPropertiesLogic
     {
         Task<IEnumerable<Cities>> GetCityEntitiesAsync();
+        Task<Cities> AddCityAsync(Cities city);
         Task<IEnumerable<PropertiesResidental>> GetAllFeautredResidentalPropertiesAsync();
         Task<IEnumerable<PropertiesResidental>> GetAllResidentalPropertiesAsync();
         Task<PropertiesResidental> GetResidentalPropertyAsync(long propertyId);

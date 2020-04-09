@@ -22,7 +22,7 @@ namespace SouthRealEstate.Logic
 
         public async Task<IEnumerable<Cities>> GetCityEntitiesAsync()
         {
-            
+
             try
             {
                 return await m_RealEstateDbServices.GetAllCitiesAsync();
@@ -33,7 +33,20 @@ namespace SouthRealEstate.Logic
                 throw;
             }
         }
+        public async Task<Cities> AddCityAsync(Cities city)
+        {
 
+            try
+            {
+                return await m_RealEstateDbServices.AddCityAsync(city);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
 
         public async Task<IEnumerable<PropertiesResidental>> GetAllFeautredResidentalPropertiesAsync()
         {

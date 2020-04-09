@@ -62,6 +62,33 @@ namespace SouthRealEstate.Controllers
             return retVal;
         }
 
+
+        [Route("api/cities")]
+        [HttpPost]
+        public async Task<IActionResult> AddCityAsync([FromBody]string cityName)
+        {
+            ActionResult retVal = null;
+
+            try
+            {
+                var city = new Cities()
+                {
+                    Name = cityName
+                };
+                var cities = await m_PropertiesLogic.AddCityAsync(city);
+                retVal = Ok(cities);
+            }
+            catch (Exception ex)
+            {
+                s_Logger.Error(ex);
+                retVal = StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+            return retVal;
+        }
+
+
+
         [Route("api/properties/residental/featured")]
         [HttpGet]
         public async Task<IActionResult> GetAllFeaturedPropertiesAsync()
